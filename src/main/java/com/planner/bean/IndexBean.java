@@ -16,7 +16,7 @@ public class IndexBean implements Serializable {
 
 	@PostConstruct
 	private void init() {
-		this.title = "Teste Pr·tico PLANNER SISTEMAS";
+		this.title = "Teste Pr√°tico PLANNER SISTEMAS";
 	}
 	
 	public String getTitle() {

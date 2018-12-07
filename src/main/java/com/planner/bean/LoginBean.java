@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
+import com.planner.treina.entity.Tarefas;
 import com.planner.treina.entity.Usuario;
 
 @Named
