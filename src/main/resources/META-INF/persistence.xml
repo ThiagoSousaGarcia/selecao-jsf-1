@@ -3,9 +3,9 @@
   <persistence-unit name="default">
     <properties>
        <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/projetojsf" />
+       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.11.101:3306/dbtreinamento" />
        <property name="javax.persistence.jdbc.user" value="root" />
-       <property name="javax.persistence.jdbc.password" value="123456" />
+       <property name="javax.persistence.jdbc.password" value="!Q@W#E1q2w3e" />
        
        <!-- colocar configurações do banco aqui -->
 

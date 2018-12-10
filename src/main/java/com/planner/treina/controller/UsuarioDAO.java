@@ -1,5 +1,8 @@
 package com.planner.treina.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -17,7 +20,7 @@ public class UsuarioDAO {
 		try {
             Usuario usuario = (Usuario) em
                     .createQuery(
-                                "SELECT u from Usuario u where u.usuario = :name and u.senha = :senha")
+                                "SELECT u from Usuario u where u.login = :name and u.senha = :senha")
                     .setParameter("name", nomeUsuario)
                     .setParameter("senha", senha).getSingleResult();
 
@@ -27,6 +30,22 @@ public class UsuarioDAO {
 			return null;
 		}
 	}
+	
+	public Usuario getUsuarioByLogin(String login) {
+		try {
+            Usuario usuario = (Usuario) em
+                    .createQuery(
+                                "SELECT u from Usuario u where u.login = :login")
+                    .setParameter("login", login)
+                    .getSingleResult();
+
+         return usuario;
+         
+		}catch(NoResultException e){
+			return null;
+		}
+	}
+	
 	
 	
 	
@@ -70,11 +89,13 @@ public class UsuarioDAO {
 	
 	public boolean logarUsuario(Usuario usuario) {
 		try {
+			
 			tx.begin();
 			usuario.setLogged(true);
 			em.merge(usuario);
 			tx.commit();
 			return true;
+
 		}catch(Exception e){
 			e.printStackTrace();
 			return false;
@@ -87,6 +108,7 @@ public class UsuarioDAO {
 	
 	public boolean deslogarUsuario(Usuario usuario) {
 		try {
+			
 			tx.begin();
 			usuario.setLogged(false);
 			em.merge(usuario);
@@ -112,5 +134,11 @@ public class UsuarioDAO {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public List<Usuario> getUsuariosCadastrados(){
+		List<Usuario> usuarios = em.createQuery("from Usuario", Usuario.class).getResultList();
+		
+		return usuarios;
 	}
 }

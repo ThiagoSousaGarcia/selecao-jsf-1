@@ -34,7 +34,7 @@ public class LoginBean implements Serializable {
 	
 	
 	public String envia() {
-		usuario = userDao.getUsuario(usuario.getUsuario(),usuario.getSenha());
+		usuario = userDao.getUsuario(usuario.getLogin(),usuario.getSenha());
 		
 		if(usuario == null) {
 			usuario = new Usuario();
@@ -47,7 +47,10 @@ public class LoginBean implements Serializable {
 		}
 	}
 	
-	
+	public String deslogar() {
+		userDao.deslogarUsuario(userDao.getUsuarioByLogin(userDao.usuarioLogado()));
+		return "/login2";
+	}
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -56,7 +59,6 @@ public class LoginBean implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
 	
 	private String title;
 

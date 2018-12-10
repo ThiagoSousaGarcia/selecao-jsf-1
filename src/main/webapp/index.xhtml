@@ -5,22 +5,60 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
 
 	<ui:composition template="_template.xhtml">
-
+			
 		<ui:define name="titulo">
 				<p:outputPanel>Início</p:outputPanel>
 		</ui:define>
+	
 
+	
 		<ui:define name="conteudo">
-		
 			<p:messages globalOnly="true" />
-			<h:form id="usuario">
+			
+			
+			<h:form>
+			
+				<p:tabMenu>
+				    <p:menuitem value="Usuários" icon="pi pi-user" action="#{indexBean.redirecionarUsuario}" ajax="false" >
+				    </p:menuitem>
+				    <p:menuitem value="Tarefas" icon="pi pi-user" action="#{indexBean.redirecionarTarefa}" ajax="false">
+				    </p:menuitem>
+				</p:tabMenu>
+			
+			
+			</h:form>
+			
+			<h:form id="usuario_logado">
+				
 				<p:outputLabel value="#{indexBean.usuarioLogado}" />
+				<p:commandButton value="Deslogar" action="#{loginBean.deslogar}" ajax="false">
+				</p:commandButton>
+				
 			</h:form>
-			<h:form id="index">
-				<p:outputLabel value="#{indexBean.title}" />
-			</h:form>
+			
+			<p:dataTable value ="#{indexBean.users}" var="u">
+				<f:facet name="header">
+        				List of Users
+    			</f:facet>
+				
+				<p:column>
+    				<!-- column header -->
+    				<f:facet name="header">User Login</f:facet>
+    				<!-- row record -->
+    				#{u.login}
+    			</p:column>
+    			
+    			<p:column>
+    				<f:facet name="header">User Name</f:facet>
+    				#{u.usuario}
+    			</p:column>
+    			
+    		</p:dataTable>
+			
+			
 		</ui:define>
 
 	</ui:composition>
