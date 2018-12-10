@@ -15,7 +15,9 @@
 		<ui:define name="conteudo">
 		
 			<p:messages globalOnly="true" />
-		
+			<h:form id="usuario">
+				<p:outputLabel value="#{indexBean.usuarioLogado}" />
+			</h:form>
 			<h:form id="index">
 				<p:outputLabel value="#{indexBean.title}" />
 			</h:form>

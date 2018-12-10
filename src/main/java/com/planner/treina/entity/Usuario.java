@@ -20,6 +20,8 @@ public class Usuario {
 	
 	private String login;
 	
+	private boolean isLogged;
+	
 	public String getUsuario() {
 		return usuario;
 	}
@@ -37,6 +39,12 @@ public class Usuario {
 	}
 	public void setLogin(String login) {
 		this.login = login;
+	}
+	public boolean isLogged() {
+		return isLogged;
+	}
+	public void setLogged(boolean isLogged) {
+		this.isLogged = isLogged;
 	}
 	
 }
