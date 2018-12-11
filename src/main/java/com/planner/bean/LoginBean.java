@@ -47,6 +47,19 @@ public class LoginBean implements Serializable {
 		}
 	}
 	
+	public String alterarSenha(String senha) {
+		usuario = userDao.getUsuario(usuario.getLogin(), usuario.getSenha());
+		
+		if(usuario == null) {
+			FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senha inválida",
+                    "Erro no Login!"));
+			return null;
+		}else {
+			userDao.atualizarSenha(usuario, senha);
+			return "/index";
+		}
+	}
+	
 	public String deslogar() {
 		userDao.deslogarUsuario(userDao.getUsuarioByLogin(userDao.usuarioLogado()));
 		return "/login2";
@@ -77,7 +90,7 @@ public class LoginBean implements Serializable {
 		}
 		
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}

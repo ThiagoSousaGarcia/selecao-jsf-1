@@ -22,6 +22,10 @@ public class Usuario {
 	
 	private boolean isLogged;
 	
+	public int getId() {
+		return this.id;
+	}
+	
 	public String getUsuario() {
 		return usuario;
 	}

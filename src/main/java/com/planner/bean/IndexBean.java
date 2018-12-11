@@ -36,8 +36,14 @@ public class IndexBean implements Serializable {
 	}
 	
 	public String redirecionarTarefa() {
-		return "/login";
+		return "/tarefas";
 	}
+	
+	public String redirecionarConfiguracoes() {
+		return "/configuracoes";
+	}
+	
+	
 	
 	public String getTitle() {
 		return title;

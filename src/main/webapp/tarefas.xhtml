@@ -5,35 +5,31 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-	
 
 	<ui:composition template="_template.xhtml">
-			
-		<ui:define name="titulo">
-				<p:outputPanel>Usuários</p:outputPanel>
-		</ui:define>
-	
 
-	
+		<ui:define name="titulo">
+				<p:outputPanel>Tarefas</p:outputPanel>
+		</ui:define>
+
 		<ui:define name="conteudo">
+		
 			<p:messages globalOnly="true" />
-			
-			
-			<h:form id = "menu">
+		
+			<h:form>
 			
 				<p:tabMenu>
 				    <p:menuitem value="Usuários"  action="#{indexBean.redirecionarUsuario}" ajax="false" >
 				    </p:menuitem>
-				    <p:menuitem value="Tarefas" action="#{indexBean.redirecionarTarefa}" ajax="false" >
+				    <p:menuitem value="Tarefas" action="#{indexBean.redirecionarTarefa}" ajax="false">
 				    </p:menuitem>
 				    
-				    
-				   	<p:menuitem value="#{indexBean.usuarioLogado}">
+				   	<p:menuitem value="#{indexBean.usuarioLogado}" icon="pi pi-user">
 				    </p:menuitem>
 				    
 				    <p:menuitem value="Configurações"  action="#{indexBean.redirecionarConfiguracoes}" ajax="false" >
 				    </p:menuitem>
-				  
+				    
 				    <p:menuitem >
 						<p:commandButton value="Deslogar" action="#{loginBean.deslogar}" ajax="false">
 						</p:commandButton>
@@ -43,28 +39,27 @@
 			
 			
 			</h:form>
-			
-			
-			<p:dataTable value ="#{indexBean.users}" var="u">
+		
+			<h:form id="tarefas">
+			<p:dataTable value ="#{tarefaBean.tarefas}" var="t">
 				<f:facet name="header">
-        				Lista de Usuários
+        				Lista de Tarefas do Usuário
     			</f:facet>
 				
 				<p:column>
     				<!-- column header -->
-    				<f:facet name="header">Login do usuário</f:facet>
+    				<f:facet name="header">Titulo da tarefa</f:facet>
     				<!-- row record -->
-    				#{u.login}
+    				#{t.titulo}
     			</p:column>
     			
     			<p:column>
-    				<f:facet name="header">Nome do usuário</f:facet>
-    				#{u.usuario}
+    				<f:facet name="header">Data de criacao</f:facet>
+    				#{t.dtcriacao}
     			</p:column>
     			
     		</p:dataTable>
-			
-			
+			</h:form>
 		</ui:define>
 
 	</ui:composition>

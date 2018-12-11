@@ -9,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 
+import com.planner.session.SessionManager;
 import com.planner.treina.entity.Usuario;
 
 public class UsuarioDAO {
@@ -93,6 +94,7 @@ public class UsuarioDAO {
 			tx.begin();
 			usuario.setLogged(true);
 			em.merge(usuario);
+			SessionManager.setValueInAplicationMap("user", usuario);
 			tx.commit();
 			return true;
 
@@ -125,15 +127,28 @@ public class UsuarioDAO {
 	
 	public String usuarioLogado() {
 		try {
-			String user = (String) em.createQuery("Select u.login "
-					+ "from "
-					+ "Usuario u "
-					+ "where u.isLogged = 1").getSingleResult();
-			return user;
+			Usuario user = (Usuario) SessionManager.getValueFromAplicationMap("user");
+			String userLogado = user.getLogin();
+			
+			return userLogado;
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public boolean atualizarSenha(Usuario usuario, String senha) {
+		try {
+			tx.begin();
+			usuario.setSenha(senha);
+			em.merge(usuario);
+			tx.commit();
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 	
 	public List<Usuario> getUsuariosCadastrados(){
