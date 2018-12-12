@@ -6,41 +6,52 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	
+	
+	<h:head>
+			<h:link rel="stylesheet" type="text/css" href="stilo.css"></h:link>
+	</h:head>
+	
 
 	<ui:composition template="_template.xhtml">
 			
-		<ui:define name="titulo">
+		<ui:define id = "titulo" name="titulo">
 				<p:outputPanel>Usuários</p:outputPanel>
 		</ui:define>
 	
 
 	
 		<ui:define name="conteudo">
+			<h:outputStylesheet library = "css" name="stilo.css"/>
 			<p:messages globalOnly="true" />
 			
+			<h:form>
+				<p:outputLabel styleClass="nomeuser" value="#{indexBean.usuarioLogado}">
+			    </p:outputLabel>
+			</h:form>
 			
-			<h:form id = "menu">
+			<h:form>
 			
-				<p:tabMenu>
-				    <p:menuitem value="Usuários"  action="#{indexBean.redirecionarUsuario}" ajax="false" >
+				<p:tabMenu >
+				    <p:menuitem styleClass="menu" value="Usuários"  action="#{indexBean.redirecionarUsuario}" ajax="false" >
 				    </p:menuitem>
-				    <p:menuitem value="Tarefas" action="#{indexBean.redirecionarTarefa}" ajax="false" >
-				    </p:menuitem>
-				    
-				    
-				   	<p:menuitem value="#{indexBean.usuarioLogado}">
+				    <p:menuitem styleClass="menu" value="Tarefas" action="#{indexBean.redirecionarTarefa}" ajax="false" >
 				    </p:menuitem>
 				    
-				    <p:menuitem value="Configurações"  action="#{indexBean.redirecionarConfiguracoes}" ajax="false" >
+				    
+
+				    <p:menuitem styleClass="menu" value="Alterar senha"  action="#{indexBean.redirecionarConfiguracoes}" ajax="false" >
 				    </p:menuitem>
 				  
 				    <p:menuitem >
-						<p:commandButton value="Deslogar" action="#{loginBean.deslogar}" ajax="false">
+						<p:commandButton styleClass="menu" value="Deslogar" action="#{loginBean.deslogar}" ajax="false">
 						</p:commandButton>
 				    </p:menuitem>
 				    
 				</p:tabMenu>
 			
+			
+
+				    
 			
 			</h:form>
 			
