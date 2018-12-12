@@ -47,6 +47,19 @@ public class UsuarioDAO {
 		}
 	}
 	
+	public String getSenhaByLogin(String login) {
+		
+		try {
+			String senha = (String)em.createQuery(
+												"Select u.senha from Usuario u where u.login = :login")
+					.setParameter("login",login)
+					.getSingleResult();
+			return senha;
+		}catch(NoResultException e){
+			return null;
+		}
+		
+	}
 	
 	
 	
@@ -64,6 +77,21 @@ public class UsuarioDAO {
 			emf.close();
 		}
 	}
+	
+	public String MD5(String md5) {
+		   try {
+		        java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+		        byte[] array = md.digest(md5.getBytes());
+		        StringBuffer sb = new StringBuffer();
+		        for (int i = 0; i < array.length; ++i) {
+		          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+		       }
+		        return sb.toString();
+		    } catch (java.security.NoSuchAlgorithmException e) {
+		    	return null;
+		    }
+		    
+		}
 	
 	
 	public boolean deletarUsuario(int id) {
@@ -140,6 +168,7 @@ public class UsuarioDAO {
 	public boolean atualizarSenha(Usuario usuario, String senha) {
 		try {
 			tx.begin();
+			senha = MD5(senha);
 			usuario.setSenha(senha);
 			em.merge(usuario);
 			tx.commit();

@@ -36,29 +36,35 @@
 				    </p:menuitem>
 				    
 				</p:tabMenu>
+				
+				
 			
 			
 			</h:form>
 		
 			<h:form id="tarefas">
-			<p:dataTable value ="#{tarefaBean.tarefas}" var="t">
-				<f:facet name="header">
-        				Lista de Tarefas do Usuário
-    			</f:facet>
-				
-				<p:column>
-    				<!-- column header -->
-    				<f:facet name="header">Titulo da tarefa</f:facet>
-    				<!-- row record -->
-    				#{t.titulo}
-    			</p:column>
-    			
-    			<p:column>
-    				<f:facet name="header">Data de criacao</f:facet>
-    				#{t.dtcriacao}
-    			</p:column>
-    			
-    		</p:dataTable>
+				<p:dataTable value ="#{tarefaBean.tarefas}" var="t">
+					<f:facet name="header">
+	        				Lista de Tarefas do Usuário
+	    			</f:facet>
+					
+					<p:column>
+	    				<!-- column header -->
+	    				<f:facet name="header">Titulo da tarefa</f:facet>
+	    				<!-- row record -->
+	    				#{t.titulo}
+	    			</p:column>
+	    			
+	    			<p:column>
+	    				<f:facet name="header">Data de criacao</f:facet>
+	    				#{t.dtcriacao}
+	    			</p:column>
+	    			
+	    		</p:dataTable>
+		    		
+				<p:commandButton value="Cadastrar Nova Tarefa" action="#{tarefaBean.redirecionarNovatarefa}" ajax="false">
+				</p:commandButton>
+		    		
 			</h:form>
 		</ui:define>
 

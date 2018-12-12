@@ -2,6 +2,7 @@ package com.planner.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -25,6 +26,7 @@ public class TarefaBean implements Serializable {
 	private TarefaDAO tarefaDao = new TarefaDAO();
 	private Usuario usuario = new Usuario();
 	private UsuarioDAO usuarioDao = new UsuarioDAO();
+	private Tarefas tarefa = new Tarefas();
 	
 	@PostConstruct
 	public void init() {
@@ -35,9 +37,30 @@ public class TarefaBean implements Serializable {
 	public List<Tarefas> getTarefas() {
 		return tarefas;
 	}
+	
+	public String redirecionarNovatarefa() {
+		return "/cadastrotarefas";
+	}
 
 	public void setTarefas(List<Tarefas> tarefas) {
 		this.tarefas = tarefas;
+	}
+	
+	public String cadastrarTarefa() {
+		Date data = new Date();
+		
+		tarefaDao.inserirTarefa(tarefa.getTitulo(), tarefa.getDescricao(), 
+				tarefa.getPrioridade(), usuario, data);
+		
+		return "/tarefas";
+	}
+
+	public Tarefas getTarefa() {
+		return tarefa;
+	}
+
+	public void setTarefa(Tarefas tarefa) {
+		this.tarefa = tarefa;
 	}
 	
 	

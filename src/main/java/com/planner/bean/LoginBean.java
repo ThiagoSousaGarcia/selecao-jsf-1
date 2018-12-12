@@ -31,10 +31,14 @@ public class LoginBean implements Serializable {
 	private UsuarioDAO userDao = new UsuarioDAO();
 	private Usuario usuario = new Usuario();
 	
+	private String senha = userDao.getSenhaByLogin(userDao.usuarioLogado());
+	Usuario usuarioLogado = userDao.getUsuarioByLogin(userDao.usuarioLogado());
 	
 	
 	public String envia() {
-		usuario = userDao.getUsuario(usuario.getLogin(),usuario.getSenha());
+		
+		String senha = userDao.MD5(usuario.getSenha());
+		usuario = userDao.getUsuario(usuario.getLogin(),senha);
 		
 		if(usuario == null) {
 			usuario = new Usuario();
@@ -47,21 +51,33 @@ public class LoginBean implements Serializable {
 		}
 	}
 	
-	public String alterarSenha(String senha) {
-		usuario = userDao.getUsuario(usuario.getLogin(), usuario.getSenha());
+	public String redirecionarSenha() {
 		
-		if(usuario == null) {
+		String senhaEntrada = userDao.MD5(usuario.getSenha());
+		
+		if(senha.equals(senhaEntrada)) {
+			return "/alterarsenha";
+		}else {
 			FacesContext.getCurrentInstance().addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senha inválida",
                     "Erro no Login!"));
 			return null;
-		}else {
-			userDao.atualizarSenha(usuario, senha);
+			
+		}
+	}
+	
+	public String alterarSenha() {
+		try {
+			
+			userDao.atualizarSenha(usuarioLogado, usuario.getSenha());
 			return "/index";
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
 		}
 	}
 	
 	public String deslogar() {
-		userDao.deslogarUsuario(userDao.getUsuarioByLogin(userDao.usuarioLogado()));
+		userDao.deslogarUsuario(usuarioLogado);
 		return "/login2";
 	}
 	
@@ -77,8 +93,7 @@ public class LoginBean implements Serializable {
 
 	@PostConstruct
 	private void init() {
-		this.title = "Login - do bean";
-		select();
+		System.out.println();
 	}
 	
 	private void select() {
@@ -97,6 +112,14 @@ public class LoginBean implements Serializable {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 	
