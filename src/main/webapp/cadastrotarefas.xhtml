@@ -28,6 +28,10 @@
 		      <h:form>
 	            <p:messages id="messages" />
 	            <p:panelGrid columns="2">
+	            	<f:facet name="header">
+	        			<h:outputText value="Cadastrar nova tarefa">
+	    				</h:outputText>
+	    			</f:facet>
 	                  <p:outputLabel for="tituloTarefa" value="Titulo da Tarefa:" />
 	                  <p:inputText id="tituloTarefa" required="true" value="#{tarefaBean.tarefa.titulo}" />
 	                   
