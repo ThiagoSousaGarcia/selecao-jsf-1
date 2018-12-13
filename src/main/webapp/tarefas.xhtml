@@ -9,60 +9,53 @@
 	<ui:composition template="_template.xhtml">
 
 		<ui:define name="titulo">
-				<p:outputPanel>Tarefas</p:outputPanel>
+			<h:outputStylesheet library = "css" name="stilo.css"/>
+			<p:outputPanel styleClass="titulo">Tarefas</p:outputPanel>
 		</ui:define>
 
 		<ui:define name="conteudo">
-		
+			<h:outputStylesheet library = "css" name="stilo.css"/>
 			<p:messages globalOnly="true" />
 		
 			<h:form>
-			
-				<p:tabMenu>
-				    <p:menuitem value="Usuários"  action="#{indexBean.redirecionarUsuario}" ajax="false" >
+				<p:menuButton styleClass="nomeuser" value="Usuário: #{indexBean.usuarioLogado}">
+			        <p:menuitem  value="Alterar senha"  action="#{indexBean.redirecionarConfiguracoes}" ajax="false"/>
+			        <p:menuitem value="Deslogar" action="#{loginBean.deslogar}" ajax="false"/>
+			    </p:menuButton>
+				<p:tabMenu >
+				    <p:menuitem styleClass="menu" value="Usuários"  action="#{indexBean.redirecionarUsuario}" ajax="false" >
 				    </p:menuitem>
-				    <p:menuitem value="Tarefas" action="#{indexBean.redirecionarTarefa}" ajax="false">
+				    <p:menuitem styleClass="menu" value="Tarefas" action="#{indexBean.redirecionarTarefa}" ajax="false" >
 				    </p:menuitem>
-				    
-				   	<p:menuitem value="#{indexBean.usuarioLogado}">
-				    </p:menuitem>
-				    
-				    <p:menuitem value="Alterar senha"  action="#{indexBean.redirecionarConfiguracoes}" ajax="false" >
-				    </p:menuitem>
-				    
-				    <p:menuitem >
-						<p:commandButton value="Deslogar" action="#{loginBean.deslogar}" ajax="false">
-						</p:commandButton>
-				    </p:menuitem>
-				    
-				</p:tabMenu>
-				
-				
-			
+				</p:tabMenu>	
 			
 			</h:form>
 		
 			<h:form id="tarefas">
-				<p:dataTable value ="#{tarefaBean.tarefas}" var="t">
+				<p:dataTable styleClass="table" value ="#{tarefaBean.tarefas}" var="t">
 					<f:facet name="header">
-	        				Lista de Tarefas do Usuário
+	        			<h:outputText value="Lista de tarefas do usuário">
+	    				</h:outputText>
 	    			</f:facet>
 					
 					<p:column>
 	    				<!-- column header -->
-	    				<f:facet name="header">Titulo da tarefa</f:facet>
+	    				<f:facet name="header">Título da tarefa</f:facet>
 	    				<!-- row record -->
-	    				#{t.titulo}
+	    				<h:outputText value="#{t.titulo}">
+	    				</h:outputText>
 	    			</p:column>
 	    			
 	    			<p:column>
-	    				<f:facet name="header">Data de criacao</f:facet>
-	    				#{t.dtcriacao}
+	    				<f:facet name="header">Data de criação</f:facet>
+							<h:outputText value="#{t.dtcriacao}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
 	    			</p:column>
 	    			
 	    		</p:dataTable>
 		    		
-				<p:commandButton value="Cadastrar Nova Tarefa" action="#{tarefaBean.redirecionarNovatarefa}" ajax="false">
+				<p:commandButton styleClass="botaocadastrar" value="Cadastrar Nova Tarefa" action="#{tarefaBean.redirecionarNovatarefa}" ajax="false">
 				</p:commandButton>
 		    		
 			</h:form>

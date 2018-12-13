@@ -3,30 +3,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
   
 <h:head>
   
 </h:head>
   
-<h:body>
-      <h:form>
-            <p:messages id="messages" />
-            <p:panelGrid columns="2">
-                  <p:outputLabel for="tituloTarefa" value="Titulo da Tarefa:" />
-                  <p:inputText id="tituloTarefa" value="#{tarefaBean.tarefa.titulo}" />
-                   
-                  <p:outputLabel for="dscTarefa" value="Descrição da Tarefa:" />
-                  <p:inputText id="dscTarefa" value="#{tarefaBean.tarefa.descricao}" />
-                  
-                  
-                  <p:outputLabel for="prioridadeTarefa" value="Prioridade da Tarefa:" />
-                  <p:inputText id="prioridadeTarefa" value="#{tarefaBean.tarefa.prioridade}" />
-                   
-                  <p:commandButton value="Cadastrar" icon="ui-icon-star" action="#{tarefaBean.cadastrarTarefa}" ajax="false">
-                  </p:commandButton>
-  
-            </p:panelGrid>
-      </h:form>
-</h:body>
+	<h:body>
+	
+				<h:form>
+						<p:menuButton styleClass="nomeuser" value="Usuário: #{indexBean.usuarioLogado}">
+					        <p:menuitem  value="Alterar senha"  action="#{indexBean.redirecionarConfiguracoes}" ajax="false"/>
+					        <p:menuitem value="Deslogar" action="#{loginBean.deslogar}" ajax="false"/>
+					    </p:menuButton>
+						<p:tabMenu >
+						    <p:menuitem styleClass="menu" value="Usuários"  action="#{indexBean.redirecionarUsuario}" ajax="false" >
+						    </p:menuitem>
+						    <p:menuitem styleClass="menu" value="Tarefas" action="#{indexBean.redirecionarTarefa}" ajax="false" >
+						    </p:menuitem>
+						</p:tabMenu>	
+					
+					</h:form>
+		      <h:form>
+	            <p:messages id="messages" />
+	            <p:panelGrid columns="2">
+	                  <p:outputLabel for="tituloTarefa" value="Titulo da Tarefa:" />
+	                  <p:inputText id="tituloTarefa" required="true" value="#{tarefaBean.tarefa.titulo}" />
+	                   
+	                  <p:outputLabel for="dscTarefa" value="Descrição da Tarefa:" />
+	                  <p:inputText id="dscTarefa" required="true" value="#{tarefaBean.tarefa.descricao}" />
+	                  
+	                  
+	                  <p:outputLabel for="prioridadeTarefa" value="Prioridade da Tarefa:" />
+	                  <p:inputNumber id="prioridadeTarefa" required="true" maxlength="1" maxValue="5" thousandSeparator="" decimalPlaces="0" value="#{tarefaBean.tarefa.prioridade}"/>
+	                   
+	                  <p:commandButton value="Cadastrar" icon="ui-icon-star" action="#{tarefaBean.cadastrarTarefa}" ajax="false">
+	                  </p:commandButton>
+	  
+	            </p:panelGrid>
+	      </h:form>
+	</h:body>
 </html>

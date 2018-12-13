@@ -9,18 +9,35 @@
   
 </h:head>
   
-<h:body>
-      <h:form>
-            <p:messages id="messages" />
-            <p:panelGrid columns="2">
-
-                  <p:outputLabel for="senha" value="Entre sua senha atual:" />
-                  <p:password id="senha" value="#{loginBean.usuario.senha}" />
-                   
-                  <p:commandButton value="Autenticar para alterar senha" icon="ui-icon-star" action="#{loginBean.redirecionarSenha}" ajax="false">
-                  </p:commandButton>
-  
-            </p:panelGrid>
-      </h:form>
-</h:body>
+	<h:body>
+	
+			<h:form>
+				<p:menuButton styleClass="nomeuser" value="Usuário: #{indexBean.usuarioLogado}">
+			        <p:menuitem  value="Alterar senha"  action="#{indexBean.redirecionarConfiguracoes}" ajax="false"/>
+			        <p:menuitem value="Deslogar" action="#{loginBean.deslogar}" ajax="false"/>
+			    </p:menuButton>
+				<p:tabMenu >
+				    <p:menuitem styleClass="menu" value="Usuários"  action="#{indexBean.redirecionarUsuario}" ajax="false" >
+				    </p:menuitem>
+				    <p:menuitem styleClass="menu" value="Tarefas" action="#{indexBean.redirecionarTarefa}" ajax="false" >
+				    </p:menuitem>
+				</p:tabMenu>	
+			
+			</h:form>
+	      <h:form>
+	      
+	  
+	      
+	            <p:messages id="messages" />
+	            <p:panelGrid columns="2">
+	
+	                  <p:outputLabel for="senha" value="Entre sua senha atual:" />
+	                  <p:password id="senha" value="#{loginBean.usuario.senha}" />
+	                   
+	                  <p:commandButton value="Autenticar para alterar senha" icon="ui-icon-star" action="#{loginBean.redirecionarSenha}" ajax="false">
+	                  </p:commandButton>
+	  
+	            </p:panelGrid>
+	      </h:form>
+	</h:body>
 </html>

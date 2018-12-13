@@ -1,9 +1,28 @@
 .menu{
 	font-style:italic;
 }
+.table{
+	font-family: "Courier New", Courier, monospace;
+}
 
 .nomeuser{
-	background-color: red;
 	font-style:italic;
-	margin-right: 10px;
+	font-family: "Courier New", Courier, monospace;
 }
+
+.titulo{
+	 text-align: center;
+}
+
+.botaocadastrar{
+	margin-top: 20px;
+}
+
+.welcome{
+	font-size: 200%;
+}
+
+.login{
+	margin: 0 auto;
+}
+

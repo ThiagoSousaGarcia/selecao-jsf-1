@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -48,11 +50,10 @@ public class TarefaBean implements Serializable {
 	
 	public String cadastrarTarefa() {
 		Date data = new Date();
-		
-		tarefaDao.inserirTarefa(tarefa.getTitulo(), tarefa.getDescricao(), 
-				tarefa.getPrioridade(), usuario, data);
-		
-		return "/tarefas";
+			tarefaDao.inserirTarefa(tarefa.getTitulo(), tarefa.getDescricao(), 
+					tarefa.getPrioridade(), usuario, data);
+			
+			return "/tarefas";
 	}
 
 	public Tarefas getTarefa() {

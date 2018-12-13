@@ -8,55 +8,40 @@
 	
 	
 	<h:head>
-			<h:link rel="stylesheet" type="text/css" href="stilo.css"></h:link>
+			
 	</h:head>
 	
 
 	<ui:composition template="_template.xhtml">
 			
 		<ui:define id = "titulo" name="titulo">
-				<p:outputPanel>Usuários</p:outputPanel>
+			<h:outputStylesheet library = "css" name="stilo.css"/>
+			<p:outputPanel styleClass="titulo">Usuários</p:outputPanel>
 		</ui:define>
 	
 
 	
-		<ui:define name="conteudo">
+		<ui:define name="conteudo">	
 			<h:outputStylesheet library = "css" name="stilo.css"/>
+			
 			<p:messages globalOnly="true" />
 			
 			<h:form>
-				<p:outputLabel styleClass="nomeuser" value="#{indexBean.usuarioLogado}">
-			    </p:outputLabel>
-			</h:form>
-			
-			<h:form>
-			
+				<p:menuButton styleClass="nomeuser" value="Usuário: #{indexBean.usuarioLogado}">
+			        <p:menuitem styleClass="nomeuser" value="Alterar senha" action="#{indexBean.redirecionarConfiguracoes}" ajax="false"/>
+			        <p:menuitem styleClass="nomeuser" value="Deslogar" action="#{loginBean.deslogar}" ajax="false"/>
+			    </p:menuButton>
 				<p:tabMenu >
 				    <p:menuitem styleClass="menu" value="Usuários"  action="#{indexBean.redirecionarUsuario}" ajax="false" >
 				    </p:menuitem>
 				    <p:menuitem styleClass="menu" value="Tarefas" action="#{indexBean.redirecionarTarefa}" ajax="false" >
 				    </p:menuitem>
-				    
-				    
-
-				    <p:menuitem styleClass="menu" value="Alterar senha"  action="#{indexBean.redirecionarConfiguracoes}" ajax="false" >
-				    </p:menuitem>
-				  
-				    <p:menuitem >
-						<p:commandButton styleClass="menu" value="Deslogar" action="#{loginBean.deslogar}" ajax="false">
-						</p:commandButton>
-				    </p:menuitem>
-				    
-				</p:tabMenu>
-			
-			
-
-				    
+				</p:tabMenu>	
 			
 			</h:form>
 			
 			
-			<p:dataTable value ="#{indexBean.users}" var="u">
+			<p:dataTable styleClass="table" value ="#{indexBean.users}" var="u">
 				<f:facet name="header">
         				Lista de Usuários
     			</f:facet>
